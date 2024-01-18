@@ -1,0 +1,32 @@
+<script>
+    window.FAQdata = function () {
+        return {
+            questions: [
+                {
+                    name: "who let the dogs out?",
+                    text: "lorem ipsum kaka maka",
+                },
+                {
+                    name: "Who killed the bill?",
+                    text: "Mind your own business . . .",
+                },
+                {
+                    name: "Random question?",
+                    text: "Random answer for you my friend!",
+                },
+            ],
+        };
+    };
+</script>
+<div
+    x-data="FAQdata()"
+    class="contianer flex flex-col gap-3 justify-center items-center rounded-lg shadow-inner bg-purple-50 p-3"
+>
+    <div class="text-2xl text-purple-400 font-bold">FAQs Section</div>
+    <template x-for="(question, index) in questions">
+        <div
+            x-data="{}"
+            x-init="loadComponent('accordion', $el, { name: question.name, text:question.text })"
+        ></div>
+    </template>
+</div>

@@ -1,0 +1,40 @@
+<script>
+    window.accordionData = function (name, text) {
+        return {
+            name: name,
+            text: text,
+            showText: false,
+        };
+    };
+</script>
+<div
+    x-data="accordionData('{{ name }}', '{{ text }}');"
+    class="flex flex-col gap-3 w-full"
+>
+    <div
+        class="flex cursor-pointer justify-between gap-2 font-semibold text-pink-900 w-full p-3 rounded bg-gradient-to-br from-pink-200 to-pink-300 hover:text-pink-950 hover:from-pink-300 hover:to-pink-400"
+        @click="showText = !showText"
+    >
+        <div x-text="name" class="text-center"></div>
+        <div
+            class="flex justify-center items-center transform transition-transform duration-500 ease-in-out"
+            :class="{
+                    '-rotate-180' : showText,
+                    'rotate-0' : !showText
+                }"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="16"
+                width="10"
+                viewBox="0 0 320 512"
+                class="text-pink-900"
+            >
+                <path
+                    d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+                />
+            </svg>
+        </div>
+    </div>
+    <div x-show="showText" x-collapse x-text="text" class="px-3"></div>
+</div>
